@@ -41,6 +41,8 @@ flex-shrink: 0;
 .conteudo {
 flex: 1;
 padding: 40px;
+ max-width: 900px;
+  margin: 0 auto;
 }
 
 /* Título */
@@ -65,6 +67,7 @@ gap: 15px;
 background: rgba(255,255,255,0.12);
 border-radius: 20px;
 padding: 15px;
+margin-bottom: 15px;
 /* No Grid, o gap cuida do espaçamento, não precisamos de margin-bottom */
 }
 
@@ -304,7 +307,7 @@ opacity: 1;
  display: grid;
  grid-template-columns: 1fr; 
   /* Espaçamento ideal para mobile */
-  gap: 20px; 
+  gap: 15px; 
   padding: 0 10px; /* Padding interno sutil */
 }
 
@@ -312,8 +315,9 @@ opacity: 1;
 /* 2. LAYOUT TABLET/DESKTOP (2 Colunas) */
 @media (min-width: 768px) {
  #cardapio {
- grid-template-columns: repeat(2, 1fr); 
- gap: 40px 30px; 
+  flex-direction: column;
+    padding-left: 0;
+    align-items: center;
  }
 }
 
@@ -365,7 +369,11 @@ opacity: 1;
 /* AJUSTES PARA CELULARES PEQUENOS (max-width: 480px) */
 @media (max-width: 480px) {
     /* Diminuir ainda mais o padding lateral do conteúdo */
-    .conteudo {
-        padding: 20px 5px; 
-    }
+   .conteudo {
+    padding: 20px 5px;
+  }
+
+  .card {
+    padding: 10px;
+  }
 }
