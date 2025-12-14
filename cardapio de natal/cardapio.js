@@ -14,7 +14,7 @@ const itens = [
  },
  {
  nome: "Torta Salgada",
- sabor: "Camarão | Bacalhau | Frango com Catupiry",
+ sabor: "Camarão | Bacalhau | Frango",
  descricao: "Massa leve e recheio generoso.",
  imagem: "https://www.receiteria.com.br/wp-content/uploads/torta-salgada-de-frango-capa.jpg"
  },
