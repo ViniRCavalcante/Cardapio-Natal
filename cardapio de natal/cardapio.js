@@ -177,3 +177,117 @@ window.addEventListener("load", () => {
 function fecharNotificacao() {
  document.getElementById("notificacao").classList.remove("mostrar");
 }
+
+function criarEstrela() {
+  const container = document.querySelector(".estrelas-flutuantes");
+  if (!container) return;
+
+  const estrela = document.createElement("div");
+  estrela.classList.add("estrela");
+
+  if (Math.random() < 0.2) {
+    estrela.classList.add("girar");
+  }
+
+  estrela.style.left = Math.random() * 80 + 10 + "%";
+
+  const tamanho = Math.random() * 6 + 6;
+  estrela.style.width = tamanho + "px";
+  estrela.style.height = tamanho + "px";
+
+  container.appendChild(estrela);
+
+  setTimeout(() => estrela.remove(), 4000);
+}
+
+setInterval(criarEstrela, 600);
+
+// estrelas
+
+// Criar estrela no ponto do toque
+function criarEstrelaToque(x, y) {
+  const arvore = document.querySelector(".arvore");
+  const container = document.querySelector(".estrelas-flutuantes");
+
+  if (!arvore || !container) return;
+
+  // Posição relativa ao contêiner da árvore
+  const rect = arvore.getBoundingClientRect();
+  const posX = x - rect.left;
+  const posY = y - rect.top;
+
+  const estrela = document.createElement("div");
+  estrela.classList.add("estrela");
+
+  // 20% das estrelas giram
+  if (Math.random() < 0.2) {
+    estrela.classList.add("girar");
+  }
+
+  // Define posição exata do toque
+  estrela.style.left = posX + "px";
+  estrela.style.top = posY + "px";
+
+  // Tamanho aleatório
+  const tamanho = Math.random() * 6 + 6;
+  estrela.style.width = tamanho + "px";
+  estrela.style.height = tamanho + "px";
+
+  container.appendChild(estrela);
+
+  // Remover após animação
+  setTimeout(() => estrela.remove(), 4000);
+}
+
+// Evento de clique no desktop
+document.querySelector(".arvore").addEventListener("click", (e) => {
+  criarEstrelaToque(e.clientX, e.clientY);
+});
+
+// Evento de toque no mobile
+document.querySelector(".arvore").addEventListener("touchstart", (e) => {
+  const toque = e.touches[0];
+  criarEstrelaToque(toque.clientX, toque.clientY);
+});
+
+// mais pedido
+
+function adicionarItem(index) {
+  const itemExistente = listaPedidos.find(p => p.index === index);
+  if (itemExistente) {
+    itemExistente.quantidade += 1;
+  } else {
+    listaPedidos.push({
+      index: index,
+      nome: itens[index].nome,
+      sabor: itens[index].sabor,
+      quantidade: 1
+    });
+  }
+
+  atualizarContador(index);
+  atualizarLinkWhatsApp();
+  atualizarMaisPedido(); // ⭐ AQUI
+}
+
+function atualizarMaisPedido() {
+  if (listaPedidos.length === 0) return;
+
+  // Encontrar o item com maior quantidade
+  let maisPedido = listaPedidos.reduce((a, b) =>
+    (a.quantidade > b.quantidade ? a : b)
+  );
+
+  // Remover destaque de todos os cards
+  document.querySelectorAll(".card").forEach(card => {
+    card.classList.remove("mais-pedido");
+  });
+
+  // Adicionar destaque ao card mais pedido
+  const card = document.querySelectorAll(".card")[maisPedido.index];
+  if (card) {
+    card.classList.add("mais-pedido");
+  }
+}
+
+

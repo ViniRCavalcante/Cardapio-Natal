@@ -25,8 +25,10 @@ padding-left: 80px;
 /* Árvore branca - desktop (lado esquerdo) */
 .arvore {
 width: 500px; 
+position: relative;
 min-width: 220px;
-height: 100vh; 
+height: 80vh;
+max-width:600px; 
 display: flex;
 align-items: center; 
 justify-content: center; 
@@ -377,3 +379,160 @@ opacity: 1;
     padding: 10px;
   }
 }
+
+/* 🌟 Brilho natalino nas bordas */
+.card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Efeito de brilho */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(
+    130deg,
+    #ff0000,
+    #ffcc00,
+    #ff0000
+  );
+  background-size: 300% 300%;
+  animation: brilhoNatalino 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+/* Ativa o brilho no hover/toque */
+.card:hover::before,
+.card:active::before {
+  opacity: 1;
+}
+
+/* Animação do brilho */
+@keyframes brilhoNatalino {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Leve aumento ao tocar */
+.card:hover,
+.card:active {
+  transform: scale(1.03);
+  box-shadow: 0 0 18px rgba(255, 200, 0, 0.4);
+}
+
+
+/* estrelas */
+.estrelas-flutuantes {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 5;
+}
+
+
+.estrela {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #ffd700 100%, transparent 10%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: subir 3s linear forwards, piscar 1.5s infinite alternate;
+}
+
+@keyframes subir {
+  0% {
+    transform: translateY(20px) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes piscar {
+  from { filter: brightness(0.6); }
+  to { filter: brightness(1.4); }
+}
+
+.estrela.girar {
+  animation: subir 4s linear forwards, piscar 1.5s infinite alternate, girar 3s linear infinite;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* mais pedido */
+
+.card.mais-pedido {
+  position: relative;
+  border: 3px solid #ffdf00;
+  box-shadow: 0 0 20px rgba(255, 223, 0, 0.8);
+  animation: destaqueMaisPedido 1.5s ease-in-out infinite alternate;
+}
+
+/* Selo com brilho e animação */
+.card.mais-pedido::after {
+  content: "⭐ MAIS PEDIDO";
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  background: linear-gradient(135deg, #ffdf00, #ffb700);
+  color: #000;
+  padding: 8px 16px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(255, 223, 0, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  z-index: 8;
+  animation: brilhoSelo 1.2s infinite alternate;
+}
+
+/* Animação do selo piscando */
+@keyframes brilhoSelo {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* Animação do card pulsando */
+@keyframes destaqueMaisPedido {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+
+
