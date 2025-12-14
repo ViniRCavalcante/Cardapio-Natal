@@ -371,16 +371,68 @@ top: 0;
 }
 
 
-/* 3. LAYOUT INTERNO DO CARD */
-/* O seu bloco original garante que imagem e texto FIQUEM EMPILHADOS dentro do card no mobile, e lado a lado no desktop. */
+/* AJUSTE PARA TELAS PEQUENAS (Mobile) */
+@media (max-width: 768px) {
+ .container {
+  /* Ocupa quase toda a largura */
+  width: 100%; 
+  /* Padding para dar espaço à decoração de topo, mas sem grandes margens laterais */
+  padding: 80px 10px 50px 10px;
+  margin: 0;
+ }
+}
+ /* ESCONDE A ÁRVORE E QUALQUER DECORAÇÃO LATERAL FIXA */
+ .arvore-natal {
+ display: none !important; /* !important garante que ela seja removida */
+}
+ 
+ /* Garante que a decoração lateral também seja removida, se ainda estiver lá */
+ .decoracao-topo-lateral::before {
+ width: 0;
+ background-image: none;
+ } 
 
+ /* LAYOUT MOBILE FIRST (Padrão para todas as telas, mas mais compacto) */
+.cardapio {
+    display: grid;
+    /* 1 coluna no mobile */
+    grid-template-columns: 1fr; 
+    
+    /* ⚠️ REDUZIR ESTE VALOR para o mobile: 30px era muito, vamos para 20px */
+    gap: 20px; 
+    
+    padding: 0 10px; /* Reduz o padding interno do cardapio */
+}
+
+/* LAYOUT TABLET/DESKTOP (A partir de 768px) */
+@media (min-width: 768px) {
+    .cardapio {
+        grid-template-columns: repeat(2, 1fr); 
+        /* Aumentamos o gap novamente para telas maiores */
+        gap: 40px 30px; 
+    }
+}
+
+/* AJUSTES INTERNOS DO CARD NO MOBILE */
 @media (max-width: 600px) {
-.card {
+    .card {
+ /* O layout de coluna já está OK, mas vamos diminuir a imagem */
  flex-direction: column; 
  text-align: center;
- }
-
- .card img {
+    }
+    
+    .card img {
+ /* Reduz o tamanho da imagem em telas pequenas */
+ width: 80px;
+ height: 80px;
  margin-bottom: 10px; 
- }
+    }
+    
+    /* Opcional: Diminuir as fontes para caberem melhor */
+    .card h2 {
+        font-size: 1.2em;
+    }
+    .card p, .card strong {
+        font-size: 0.9em;
+    }
 }
