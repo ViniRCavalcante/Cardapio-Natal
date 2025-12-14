@@ -1,0 +1,386 @@
+* {
+ margin: 0;
+padding: 0;
+ box-sizing: border-box;
+ font-family: Arial, sans-serif;
+}
+
+body {
+ background: #b30000;
+ color: #fff;
+ overflow-x: hidden;
+ min-height: 100vh; /* Adicionado para responsividade do fixed */
+ position: relative; /* Adicionado para controle de z-index */
+}
+
+/* Container */
+.container {
+ display: flex;
+ min-height: 100vh;
+ position: relative; /* Adicionado */
+ z-index: 10; /* Adicionado para elevar o conteúdo acima da decoração */
+ padding-left: 80px; /* Adicionado para compensar o festão lateral */
+}
+
+/* Árvore branca - desktop (lado esquerdo) */
+.arvore {
+ width: 500px; 
+ min-width: 220px;
+ height: 100vh; 
+ display: flex;
+ align-items: center;  
+ justify-content: center;  
+
+ background-image: url("./image/arvore-natal.png");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: contain;
+
+ flex-shrink: 0;
+}
+
+
+/* Conteúdo */
+.conteudo {
+ flex: 1;
+ padding: 40px;
+}
+
+/* Título */
+h1 {
+ font-size: clamp(32px, 5vw, 48px);
+ margin-bottom: 30px;
+}
+
+h1 span {
+ font-weight: bold;
+}
+
+/* Cards */
+.card {
+ display: flex;
+ align-items: center;
+ gap: 15px;
+ background: rgba(255,255,255,0.12);
+ border-radius: 20px;
+ padding: 15px;
+ margin-bottom: 20px;
+}
+
+.card img {
+  /* background-image: url("./image/pudim.png");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: contain; */
+ width: 90px;
+ height: 90px;
+ border-radius: 50%;
+ object-fit: cover;
+}
+
+.card h2 {
+ margin-bottom: 5px;
+}
+
+.card strong {
+ font-size: 14px;
+}
+
+.card p {
+ font-size: 14px;
+}
+
+/* Rodapé */
+.rodape {
+ margin-top: 40px;
+}
+
+.whatsapp {
+ display: inline-flex;
+ align-items: center;
+ gap: 10px;
+ margin-top: 15px;
+ background: #25d366;
+ color: #fff;
+ padding: 12px 18px;
+ border-radius: 30px;
+ text-decoration: none;
+ font-weight: bold;
+}
+
+/* Estilo para o botão "Adicionar" */
+.adicionar-btn {
+background: #d7b500; /* Dourado */
+ color: #000;
+ padding: 8px 15px;
+ border: none;
+ border-radius: 20px;
+ cursor: pointer;
+ font-size: 14px;
+ font-weight: bold;
+ margin-top: 10px;
+ transition: background 0.3s;
+}
+
+.adicionar-btn:hover {
+ background: #ffdf00;
+}
+
+/* Para alinhar o botão no card */
+.card-footer {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
+ margin-top: 10px;
+}
+
+/* ===================== */
+/* 🎄 DECORAÇÃO FIXA (TOPO E LATERAL) */
+/* ===================== */
+
+.decoracao-topo-lateral {
+position: fixed;
+top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ pointer-events: none;
+ z-index: 1;
+
+ /* Base: A imagem de canto é usada apenas para posicionar o canto inicial */
+ background-image: url('./image/decoracao-natal.png');
+ background-repeat: no-repeat;
+ background-position: top left;
+ background-size: 150px auto; /* Define um tamanho base para a imagem de canto, ajuste conforme necessário */
+}
+
+/* 1. Repete a decoração na lateral esquerda */
+.decoracao-topo-lateral::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 80px; /* Largura da guirlanda na lateral */
+ height: 100%; 
+ background-image: url('./image/decoracao-natal.png');
+ background-repeat: repeat-y; /* Repetição vertical */
+ background-position: left;
+ background-size: 150px auto; /* Repete a imagem original, mantendo a largura */
+ opacity: 1; /* Opacidade total */
+}
+
+/* 2. Repete a decoração no topo */
+.decoracao-topo-lateral::after {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%; 
+ height: 80px; /* Altura da guirlanda no topo */
+ background-image: url('./image/decoracao-natal.png');
+ background-repeat: repeat-x; /* Repetição horizontal */
+ background-position: top;
+ background-size: auto 150px; /* Repete a imagem original, mantendo a altura */
+ opacity: 1; /* Opacidade total */
+}
+
+
+/* ===================== */
+/* ❄️ NEVE */
+/* ===================== */
+#neve {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ pointer-events: none;
+ z-index: 900;
+}
+
+.floco {
+ position: absolute;
+ top: -10px;
+ background: white;
+ border-radius: 50%;
+ animation: cair linear;
+}
+
+/* ===================== */
+/* ✨ LUZES NATALINAS */
+/* ===================== */
+.luzes {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ display: flex;
+ justify-content: space-around;
+ padding: 10px;
+ z-index: 1000;
+ pointer-events: none;
+}
+
+.luzes span {
+ width: 14px;
+ height: 14px;
+ border-radius: 50%;
+ background: red;
+ animation: piscar 2s infinite alternate;
+}
+
+.luzes span:nth-child(2n) {
+ background: yellow;
+ animation-delay: 0.5s;
+}
+
+.luzes span:nth-child(3n) {
+ background: green;
+ animation-delay: 1s;
+}
+
+@keyframes piscar {
+ from {
+ opacity: 0.4;
+ box-shadow: none;
+ }
+ to {
+ opacity: 1;
+ box-shadow: 0 0 10px currentColor;
+ }
+}
+
+/* ===================== */
+/* RESPONSIVO */
+/* ===================== */
+@media (max-width: 768px) {
+ .container {
+ flex-direction: column;
+ padding-left: 0; /* Removido o padding lateral no mobile */
+ }
+
+ .arvore {
+ width: 100%;
+ min-width: 100%;
+ height: 280px; 
+ background-position: center;
+ background-size: contain;
+ }
+
+ .conteudo {
+  padding: 20px;
+ }
+
+ .card {
+ flex-direction: column;
+ text-align: center;
+ }
+ 
+ /* Esconde a decoração fixa na versão mobile */
+ .decoracao-topo-lateral,
+ .decoracao-topo-lateral::before,
+ .decoracao-topo-lateral::after {
+ display: none;
+ }
+
+}
+/* Notificação */
+.notificacao {
+ position: fixed;
+ top: 20px;
+ right: 20px;
+ max-width: 340px;
+ background: linear-gradient(135deg, #c00000, #a00000);
+ color: #fff;
+ padding: 18px 20px;
+ border-radius: 14px;
+ box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+ font-family: inherit;
+ z-index: 9999;
+
+ opacity: 0;
+ transform: translateY(-20px);
+ pointer-events: none;
+
+ transition: all 0.6s ease;
+}
+
+.notificacao.mostrar {
+ opacity: 1;
+ /* transform: translateY(0); */
+ pointer-events: auto;
+}
+
+.notificacao strong {
+ font-size: 18px;
+}
+
+.notificacao p {
+ margin: 10px 0 14px;
+ font-size: 14px;
+ line-height: 1.4;
+}
+
+.notificacao button {
+ background: #25d366;
+ border: none;
+ color: #fff;
+ padding: 8px 14px;
+ border-radius: 20px;
+ cursor: pointer;
+ font-weight: bold;
+ font-size: 13px;
+}
+
+.notificacao button:hover {
+ opacity: 0.9;
+}
+
+/* 📱 Mobile */
+@media (max-width: 480px) {
+ .notificacao {
+ left: 16px;
+ right: 16px;
+ top: 16px;
+ max-width: none;
+ }
+}
+
+/* ===================== */
+/* 📱 RESPONSIVIDADE DO LAYOUT DE COLUNAS */
+/* ===================== */
+
+/* 1. MOBILE FIRST (1 COLUNA) */
+#cardapio {
+    display: grid;
+    /* Por padrão (para telas pequenas) define 1 coluna */
+    grid-template-columns: 1fr; 
+    gap: 30px; /* Espaço vertical entre os cards */
+    padding: 0 20px; 
+}
+
+
+/* 2. LAYOUT TABLET/DESKTOP (2 COLUNAS) */
+/* A partir de 768px (tablets e desktops), divide em 2 colunas */
+@media (min-width: 768px) {
+    #cardapio {
+        grid-template-columns: repeat(2, 1fr); /* Cria 2 colunas de largura igual */
+        gap: 40px 30px; /* Espaço entre os cards */
+    }
+}
+
+
+/* 3. LAYOUT INTERNO DO CARD */
+/* O seu bloco original garante que imagem e texto FIQUEM EMPILHADOS dentro do card no mobile, e lado a lado no desktop. */
+
+@media (max-width: 600px) {
+.card {
+ flex-direction: column; 
+ text-align: center;
+ }
+
+ .card img {
+ margin-bottom: 10px; 
+ }
+}

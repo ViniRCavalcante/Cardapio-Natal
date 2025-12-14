@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Cardápio de Natal com Pudim, Tortas Salgadas e Sobremesas. Faça seu pedido pelo WhatsApp!">
+  <title>Cardápio de Natal</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="cardapio.css">
+
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Decoraçao no top e lateral -->
+  <div class="decoracao-topo-lateral"></div>
+
+  <!-- ❄️ Neve -->
+  <div id="neve"></div>
+
+  <!-- ✨ Luzes natalinas -->
+  <div class="luzes">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="container">
+
+    <!-- Árvore branca -->
+    <div class="arvore"></div>
+
+
+    <!-- Conteúdo -->
+    <div class="conteudo">
+      <h1>CARDÁPIO <span>DE NATAL</span></h1>
+
+      <div id="cardapio"></div>
+
+      <div class="rodape">
+        <p>Preço a combinar no WhatsApp</p>
+        <!-- <p>Confirmação mediante sinal de 50%</p> -->
+
+        <a id="whatsappLink" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          Fazer pedido no WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="notificacao" id="notificacao">
+  <strong>🎄 Seja bem-vindo!</strong>
+  <p>
+    Delícias preparadas com muito carinho para deixar sua ceia ainda mais especial.
+    <br>
+    ✨ Faça seu pedido pelo WhatsApp!
+  </p>
+  <button onclick="fecharNotificacao()">Entendi</button>
+</div>
+
+  <!-- JS -->
+  <script src="cardapio.js"></script>
+</body>
+</html>
