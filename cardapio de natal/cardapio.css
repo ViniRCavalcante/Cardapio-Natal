@@ -535,4 +535,26 @@ opacity: 1;
   }
 }
 
+/* preços  */
+.preco-unico {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffdf00;
+  margin: 8px 0;
+}
+
+.lista-precos {
+  margin: 10px 0;
+}
+
+.preco-item {
+  font-size: 15px;
+  margin: 3px 0;
+  color: #fff;
+}
+
+.preco-item span {
+  color: #ffdf00;
+  font-weight: bold;
+}
 

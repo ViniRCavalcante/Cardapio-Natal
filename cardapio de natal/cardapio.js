@@ -6,42 +6,78 @@ const numeroWhatsApp = "5581995292652";
 let listaPedidos = [] // Array para armazenar os pedidos selecionados
 
 const itens = [
- {
- nome: "Pudim",
- sabor: "Tradicional",
- descricao: "Pudim cremoso com calda de caramelo.",
- imagem: "https://s2-receitas.glbimg.com/115DQucrWsNOUxf_ncmMUisprZI=/0x0:1080x819/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/w/a/cB6VP5QoOByFKEuCleIQ/jonreceitas-109758346-416338779271002-5424220606850697813-n.jpg"
- },
- {
- nome: "Torta Salgada",
- sabor: "Camarão | Bacalhau | Frango",
- descricao: "Massa leve e recheio generoso.",
- imagem: "https://www.receiteria.com.br/wp-content/uploads/torta-salgada-de-frango-capa.jpg"
- },
- {
- nome: "Bolo de Prestígio",
- sabor: "Prestígio / Chocolate",
- descricao: "Bolo de chocolate com coco e recheio cremoso.",
- imagem: "https://espaconatelie.com.br/wp-content/uploads/2025/04/como-fazer-bolo-prestigio.jpg"
- },
- {
- nome: "Escondidinho",
- sabor: "Carne / Frango",
- descricao: "Escondidinho muito saboroso e recheado.",
- imagem: "https://www.tendaatacado.com.br/dicas/wp-content/uploads/2022/03/escondidinho-de-frango-interna.jpg"
- },
- {
- nome: "Lasanha",
- sabor: "Carne / Frango",
- descricao: "Lasanha deliciosa e muito saborosa.",
- imagem: "https://s2-receitas.glbimg.com/BI9J-YruUekYVoV_bcoUzt1QUz0=/0x0:1400x814/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2023/N/u/OZzSPKS96MIg38g58rrQ/g1-lasanha-capa.jpg"
- },
- {
- nome: "Bolo de Noiva",
- sabor: "",
- descricao: "Um delicioso e saboroso bolo de noiva",
- imagem: "https://internovias.com.br/wp-content/uploads/2025/05/Imagem-do-WhatsApp-de-2025-05-13-as-07.59.39_67973053.jpg"
- }
+  {
+    nome: "Pudim",
+    sabor: "Tradicional",
+    descricao: "Pudim cremoso com calda de caramelo.",
+    preco: 35.00,
+    imagem: "https://s2-receitas.glbimg.com/115DQucrWsNOUxf_ncmMUisprZI=/0x0:1080x819/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/w/a/cB6VP5QoOByFKEuCleIQ/jonreceitas-109758346-416338779271002-5424220606850697813-n.jpg"
+  },
+
+  {
+  nome: "Torta Salgada",
+  sabor: "Frango | Camarão",
+  descricao: "Massa leve e recheio generoso.",
+  precosPorSabor: [
+    { sabor: "Frango", valor: 80.00 },
+    { sabor: "Camarão", valor: 100.00 }
+  ],
+  imagem: "https://www.receiteria.com.br/wp-content/uploads/torta-salgada-de-frango-capa.jpg"
+  },
+
+
+  {
+    nome: "Bolo de Prestígio",
+    sabor: "Prestígio / Chocolate",
+    descricao: "Bolo de chocolate com coco e recheio cremoso.",
+    precos: [
+      { tamanho: "1kg", valor: 50 },
+    ],
+    imagem: "https://espaconatelie.com.br/wp-content/uploads/2025/04/como-fazer-bolo-prestigio.jpg"
+  },
+
+  {
+    nome: "Escondidinho",
+    sabor: "Carne / Frango",
+    descricao: "Escondidinho muito saboroso e recheado.",
+    preco: 75.00,
+    imagem: "https://www.tendaatacado.com.br/dicas/wp-content/uploads/2022/03/escondidinho-de-frango-interna.jpg"
+  },
+
+  {
+    nome: "Lasanha",
+    sabor: "Carne / Frango",
+    descricao: "Lasanha deliciosa e muito saborosa.",
+    preco: 55.00,
+    imagem: "https://s2-receitas.glbimg.com/BI9J-YruUekYVoV_bcoUzt1QUz0=/0x0:1400x814/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2023/N/u/OZzSPKS96MIg38g58rrQ/g1-lasanha-capa.jpg"
+  },
+
+  {
+    nome: "Bolo de Noiva",
+    sabor: "",
+    descricao: "Um delicioso e saboroso bolo de noiva",
+    imagem: "https://internovias.com.br/wp-content/uploads/2025/05/Imagem-do-WhatsApp-de-2025-05-13-as-07.59.39_67973053.jpg",
+    precos: [
+      { tamanho: "500g", valor: 35 },
+      { tamanho: "1kg", valor: 70 },
+    ]
+  },
+
+  {
+    nome: "Salada de Bacalhau",
+    sabor: "",
+    descricao: "Salada especial de bacalhau com legumes.",
+    preco: 85.00,
+    imagem: "https://blog.biglar.com.br/wp-content/uploads/2023/03/iStock-1352143211-scaled.jpeg"
+  },
+
+  {
+    nome: "Salpicão",
+    sabor: "Frango",
+    descricao: "Salpicão cremoso tradicional.",
+    preco: 60.00,
+    imagem: "https://www.receiteria.com.br/wp-content/uploads/salpicao-de-frango-1.jpg"
+  }
 ];
 
 const cardapio = document.getElementById("cardapio");
@@ -51,19 +87,44 @@ const card = document.createElement("div");
 card.className = "card";
 
 card.innerHTML = `
-<img src="${item.imagem}">
-<div>
-<h2>${item.nome}</h2>
-<strong>${item.sabor}</strong>
-<p>${item.descricao}</p>
-<div class="card-footer">
-<button class="adicionar-btn" data-index="${index}">
-Adicionar à Lista
-</button>
-<span id="contador-${index}" style="color: #ffdf00; font-weight: bold;"></span>
-</div>
-</div>
+  <img src="${item.imagem}">
+  <div>
+    <h2>${item.nome}</h2>
+    <strong>${item.sabor}</strong>
+    <p>${item.descricao}</p>
+
+    ${
+      item.precosPorSabor
+        ? `
+          <div class="lista-precos">
+            ${item.precosPorSabor.map(p => `
+              <p class="preco-item">${p.sabor}: <span>R$ ${p.valor.toFixed(2)}</span></p>
+            `).join("")}
+          </div>
+        `
+      : item.precos
+        ? `
+          <div class="lista-precos">
+            ${item.precos.map(p => `
+              <p class="preco-item">${p.tamanho}: <span>R$ ${p.valor.toFixed(2)}</span></p>
+            `).join("")}
+          </div>
+        `
+      : item.preco
+        ? `<p class="preco-unico">R$ ${item.preco.toFixed(2)}</p>`
+        : ""
+    }
+
+    <div class="card-footer">
+      <button class="adicionar-btn" data-index="${index}">
+        Adicionar à Lista
+      </button>
+      <span id="contador-${index}" style="color: #ffdf00; font-weight: bold;"></span>
+    </div>
+  </div>
 `;
+
+
 
 cardapio.appendChild(card);
 });
